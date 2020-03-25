@@ -88,12 +88,12 @@ Cypress.Commands.add(
       mocks = {}
     } = options;
 
-    const schema = makeExecutableSchema({
+    const executableSchema = makeExecutableSchema({
       typeDefs: schemaAsSDL(options.schema)
     });
 
     addMockFunctionsToSchema({
-      schema,
+      schema: executableSchema,
       mocks
     });
 
@@ -140,7 +140,7 @@ Cypress.Commands.add(
           }
 
           return graphql({
-            schema,
+            schema: executableSchema,
             source: query,
             variableValues: variables,
             operationName,
